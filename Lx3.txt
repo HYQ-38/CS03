@@ -1,0 +1,136 @@
+C#企业级开发技术练习3答题卡
+
+班级：     信息管理1班
+姓名：     黄远茜
+学号：     20190307138
+
+注：请将答案放置在序号下方。*/
+
+（一）using System;
+
+namespace ConsoleApp4
+{
+    delegate double? CalcD(int? a, int? b,int? c);
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            static double? CalcSum(int? x, int? y,int? c)
+            { return x + y+c; }
+
+            CalcD ca = CalcSum;
+            ca += CalcSum;
+            Console.WriteLine(ca(2,3,6));
+
+
+
+        }
+    }
+}
+
+（二）using System;
+
+namespace ConsoleApp4
+{
+    delegate double? CalcD(int? a, int? b,int? c);
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            static double? CalcSum(int? x, int? y,int? c)
+            { return x * y*c; }
+
+            CalcD ca = CalcSum;
+            ca += CalcSum;
+            Console.WriteLine(ca(2,3,6));
+
+
+
+        }
+    }
+}
+
+
+（三）using System;
+
+namespace ConsoleApp4
+{
+    delegate double? CalcD(float a, float b,float c);
+    class Program
+    {
+       
+        static void Main(string[] args)
+        {
+            static double? CalcSum(float a, float b,float c)
+            { return a + b+c; }
+            static double? CalcMul(float a, float b, float c)
+            { return a * b *c; }
+            CalcD cd = CalcSum;
+
+            CalcD c = CalcMul;
+            cd += CalcMul;
+            Console.WriteLine(cd(5.1f, 2.0f, 0.1f));
+            cd -= CalcMul;
+            Console.WriteLine(cd(5.1f, 2.0f, 0.1f));
+（二）
+1
+using System;
+using System.Linq;
+
+namespace ConsoleApp6
+{
+    delegate void CalcE(decimal[] a);
+    class Program
+    {
+        
+        static void Main(string[] args)
+        {
+            
+            CalcE ce = delegate (decimal[] x)
+            {
+                Console.WriteLine($"总和：{x.Sum()}");
+            };
+            ce += delegate (decimal[] x)
+            {
+                Console.WriteLine($"平均值：{x.Average()}");
+            };
+            ce(new[] { 1.2M, 8.9M, 2.1M, 9.9M });
+
+        }
+    }
+}
+2
+using System;
+
+namespace ConsoleApp7
+{
+    class Program
+    {
+        static void CalcJoin(double[] x)
+        {
+            Console.WriteLine(string.Join(",",x)) ;
+        }
+        static void CalcConcat(double[] x)
+        {
+            Console.WriteLine(string.Concat(x));
+        }
+        static void Main(string[] args)
+        {
+            Action<double[]> ce = CalcJoin;
+            ce += CalcConcat;
+            string s3 = "\"sql\",\"cs\"";
+            Console.WriteLine(s3);
+            string s4 = @"""sql"",""cs""";
+            Console.WriteLine(s4);
+
+        }
+
+
+
+    }
+}
+
+
+
+
+
